@@ -24,3 +24,12 @@
 - **JavaScript** (Lógica del juego, manejo de estados y eventos del tablero).
 
 ---
+
+⚙️ Instalación y Uso
+Clona este repositorio en tu máquina local:
+
+Bash
+git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/tu-usuario/tu-repositorio.git)
+Abre la carpeta del proyecto.
+
+Ejecuta el archivo index.html en tu navegador web preferido o utilízalo mediante un servidor local (como Live Server en VS Code).
