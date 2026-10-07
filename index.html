@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <div id="videogame">
+        <aside id="info-panel">
+            <h1 id="game-title">MEMORAMA</h1>
+            <h2 id="game-subtitle">PON A PRUEBA TU HABILIDAD Y MEMORIA</h2>
+            <p id="game-instructions">
+                Da clic sobre cada carta para voltearlas y encontrar los pares.
+            </p>
+        </aside>
+
+        <section id="game-board">
+            <div id="memo-grid" class="memo-grid"></div>
+        </section>
+    </div>
+
+    <!-- NUEVO: Modal nativo de victoria (reemplaza al alert) -->
+    <dialog id="win-modal" class="modern-dialog">
+        <div class="dialog-content">
+            <div class="dialog-icon">🎉</div>
+            <h2>¡Excelente trabajo!</h2>
+            <p>Completaste el memorama con éxito.</p>
+            <button id="restart-btn" class="dialog-btn">Jugar de nuevo</button>
+        </div>
+    </dialog>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
