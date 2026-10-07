@@ -1,0 +1,264 @@
+/* --- Variables y Reset --- */
+:root {
+    --bg-main: #008cd1;
+    --panel-bg: #008cd1;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --primary-font: 'System-UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    font-family: var(--primary-font);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita barras de desplazamiento innecesarias */
+}
+
+/* --- Contenedor Principal a Pantalla Completa (1400px max) --- */
+#videogame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    max-height: 900px;
+    padding: 40px;
+}
+
+/* --- Panel Izquierdo Proporcionado --- */
+#info-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffff;
+    width: 30%;
+    padding-right: 20px;
+    text-align: center;
+}
+
+#game-title {
+    font-size: 6.8rem;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 3px 3px 0px rgba(95, 192, 239, 0.9);
+    margin-bottom: 16px;
+    word-break: break-all;
+}
+
+#game-subtitle {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+#game-instructions {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+}
+
+/* --- Tablero y Cuadrícula (Grid) Amplios --- */
+#game-board {
+    background-color: #5fc0efe6;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 2.5px, transparent 2.5px);
+    background-size: 24px 24px;
+}
+
+.memo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* --- Cartas Grandes Optimizadas para 1400px --- */
+.memo-card {
+    width: 140px;  /* Incrementado para ocupar excelente espacio */
+    height: 190px; /* Incrementado proporcionalmente */
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.memo-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+    border-radius: 14px;
+}
+
+/* Al voltear la carta */
+.memo-card.flipped .memo-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memo-card-front, .memo-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cara frontal (Dorso de la carta con rombo grande y letra 'k') */
+.memo-card-front {
+    background-color: #ffffff;
+    border: 3px solid #e1e8ed;
+    background-image: 
+        radial-gradient(#4a76a8 38%, transparent 39%),
+        linear-gradient(to bottom, transparent 82%, #4a76a8 82%);
+    background-size: 40px 40px, 100% 100%;
+    background-position: center 38%, 0 0;
+    background-repeat: no-repeat;
+}
+
+.memo-card-front::after {
+    content: 'k';
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* Cara trasera (Íconos grandes al descubierto) */
+.memo-card-back {
+    background-color: #ffffff;
+    transform: rotateY(180deg);
+    font-size: 5.4rem; /* Emoji de gran tamaño visible y limpio */
+    border: 2px solid #cbd5e1;
+}
+
+/* --- Estilos del Modal Nativo (Popup de Victoria Centrado) --- */
+.modern-dialog {
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    max-width: 400px;
+    
+    /* Centrado automático del elemento dialog */
+    margin: auto;
+    
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, overlay 0.3s ease allow-discrete, display 0.3s ease allow-discrete;
+}
+
+.modern-dialog[open] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.modern-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modern-dialog[open]::backdrop {
+    opacity: 1;
+}
+
+.dialog-content {
+    padding: 36px 28px;
+    text-align: center;
+}
+
+.dialog-icon {
+    font-size: 4rem;
+    margin-bottom: 14px;
+}
+
+.modern-dialog h2 {
+    margin: 0 0 8px 0;
+    color: #0f172a;
+    font-size: 1.7rem;
+}
+
+.modern-dialog p {
+    color: #475569;
+    margin: 0 0 28px 0;
+    font-size: 1rem;
+}
+
+/* Botón estilizado con el color azul exacto del juego y sombra mejorada */
+.dialog-btn {
+    background: linear-gradient(135deg, #008cd1, #00689b);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 140, 209, 0.3);
+}
+
+.dialog-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 140, 209, 0.5);
+}
+
+/* --- Responsividad Adaptativa --- */
+@media (max-width: 1024px) {
+    #videogame {
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+        overflow-y: auto;
+        height: auto;
+        padding: 20px;
+    }
+    body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+    #info-panel {
+        width: 100%;
+        text-align: center;
+        padding-right: 0;
+    }
+    .memo-card {
+        width: 90px;
+        height: 125px;
+    }
+    .memo-card-back {
+        font-size: 2.5rem;
+    }
+}
