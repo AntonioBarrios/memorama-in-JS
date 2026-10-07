@@ -1,2 +1,26 @@
-# memorama-in-JS
-Memorama es un juego de memoria clásico de diseño moderno, desarrollado con tecnologías web nativas (HTML5, CSS3 y JavaScript vanilla). El objetivo del juego es poner a prueba la concentración y la agilidad visual de los usuarios encontrando todas las parejas de íconos ocultas detrás de un tablero de cartas interactivas.
+# 🃏 Memorama K
+
+> Un clásico juego de memoria visual (Match-Match / Memorama) modernizado con componentes estilizados en 3D, diseño responsivo y una interfaz de usuario impecable.
+
+![Estado del Proyecto](https://img.shields.io/badge/status-completado-success.svg)
+![Tecnologías](https://img.shields.io/badge/tecnologías-HTML5%20%7C%20CSS3%20%7C%20JavaScript-blue.svg)
+
+---
+
+## ✨ Características Principales
+
+- **Diseño 3D Fluido:** Animaciones de volteo de cartas realistas utilizando `transform-style: preserve-3d` y curvas de Bezier cúbicas.
+- **Estética Cuidada:** Dorso de cartas personalizado con rombos de bordes redondeados, detalles finos y tipografía optimizada.
+- **Modal de Victoria Nativo:** Popup moderno y accesible utilizando la etiqueta nativa `<dialog>` con efectos de `backdrop-filter` y animación de entrada suave.
+- **Totalmente Responsivo:** Adaptación fluida para pantallas grandes (hasta 1400px) y rediseño en dispositivos móviles/tablets con soporte para scroll adaptativo.
+- **Estructura Modular CSS:** Uso avanzado de variables CSS (`:root`), Grid Layout y selectores optimizados.
+
+---
+
+## 🚀 Tecnologías Utilizadas
+
+- **HTML5** (Estructura semántica y elementos nativos como `<dialog>`).
+- **CSS3** (Flexbox, CSS Grid, Transformaciones 3D, Variables y Pseudo-elementos avanzados).
+- **JavaScript** (Lógica del juego, manejo de estados y eventos del tablero).
+
+---
